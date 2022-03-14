@@ -1,0 +1,18 @@
+<%- include('header') -%>
+
+<div class="logi">
+	<h1>Login</h1>
+    <% if (locals.logout){%>
+       <div class="alter alert-success ">
+           <%= logout%>
+       </div>
+        <% } %>
+    <form method="POST" action="/route/login">
+    	<input type="email" name="email" placeholder="Username" required="required" autocomplete="off"/>    
+        <input type="password" name="password" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</div>
+
+<%- include('footer') -%>    
+    
