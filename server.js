@@ -12,7 +12,7 @@ const { Router } = require('express');
 const app = express();
 
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
@@ -26,7 +26,7 @@ app.use('/static',express.static(path.join(__dirname,'public')));
 app.use(session({
     secret :uuidv4(),
     resave : false,
-    saveUninitialized : true
+    saveUninitialized : true,
 }));
 
 
@@ -38,4 +38,4 @@ app.use('/route',router);
 
 app.get('/',(req,res)=>{
     res.render('base',{title:'Login System'});
-}).listen(3001,()=>{console.log("you are connected in port http://localhost:3001")});
+}).listen(3002,()=>{console.log("you are connected in port http://localhost:3002")});

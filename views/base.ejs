@@ -1,18 +1,75 @@
 <%- include('header') -%>
 
-<div class="logi">
+<!-- <div class="logi">
 	<h1>Login</h1>
     <% if (locals.logout){%>
        <div class="alter alert-success ">
            <%= logout%>
        </div>
         <% } %>
-    <form method="POST" action="/route/login">
-    	<input type="email" name="email" placeholder="Username" required="required" autocomplete="off"/>    
-        <input type="password" name="password" placeholder="Password" required="required" />
-        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    <form method="POST" action="/route/login" id="form">
+    	<input type="email" name="email" placeholder="Username"  autocomplete="off" id="email"/> 
+        <span id="errorEmail" class="text-danger text-center"></span>   
+        <input type="password" name="password" placeholder="Password"  id="password" />
+        <span id="errorPassword" class="text-danger text-center"></span> 
+        <button type="submit" id="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
     </form>
-</div>
+</div> -->
+<div class="login-box">
+    <h2>Login</h2>
+    <% if (locals.logout){%>
+        <div class="alter alert-success ">
+            <%= logout%>
+        </div>
+         <% } %>
+    <form method="POST" action="/route/login" id="form">
+      <div class="user-box">
+        <input type="email" name="email" id="email" placeholder="Email Address" >
+        
+        <span id="errorEmail" class="text-danger text-center"></span>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password" id="password" placeholder="password" >
+        <span id="errorPassword" class="text-danger text-center"></span> 
+        <!-- <label>Password</label> -->
+       
+      </div>
+      <button  type="submit" id="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </button>
+    </form>
+  </div>
+<script>
+    const email=document.getElementById("email");
+    const password=document.getElementById("password");
+    const form=document.getElementById('form');
+    const error1=document.getElementById("errorEmail");
+    const error2=document.getElementById("errorPassword");
+
+    form.addEventListener('submit',(e)=>{
+        let message1=[];
+        let message2=[];
+        if(email.value==='' || email.value==null){
+            message1.push('please enter the email')
+        }
+        if(password.value===''||password.value===null){
+            message2.push('password must be atleast 5 char')
+        }
+        if(message1.length>0){
+            e.preventDefault();
+            error1.innerText=message1.join(' ');
+        }
+        if(message2.length>0){
+            e.preventDefault()
+            error2.innerText=message2.join(' ')
+        }
+    })
+    
+</script>
 
 <%- include('footer') -%>    
     

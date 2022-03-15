@@ -17,17 +17,18 @@ router.post('/login',(req,res)=>{
     res.redirect('/route/homepage');
     //  res.end("Login successful...!");
   }else{
-      res.end("invalid username");
+      res.end("invalid username");      
   }
 });
 
-//route for dashboard
+//route for homepage
 router.get('/homepage',(req,res)=>{
     if(req.session.user){
         res.render('homepage',{user:req.session.user}); 
     }else{
         res.send("unautherized user name");
     }
+    
 });
 
 //route for logout
@@ -39,6 +40,7 @@ router.get('/logout',(req,res)=>{
         }else{
             res.render('base',{title:"Express",logout:"Logout Successfully..!"}) ;
         }
+        
     })
 })
   
